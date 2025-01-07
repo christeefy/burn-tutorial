@@ -1,12 +1,31 @@
 use crate::model::ModelConfig;
-use burn::backend::Wgpu;
+use crate::training::TrainingConfig;
+use burn::{
+    backend::{Autodiff, Wgpu},
+    data::dataset::Dataset,
+    optim::AdamConfig,
+};
 
 mod data;
+mod inference;
 mod model;
 mod training;
 
 fn main() {
+    let artifact_dir = "/tmp/guide";
     let device = Default::default();
-    let model = ModelConfig::new(10, 512).init::<Wgpu>(&device);
-    println!("{}", model);
+
+    crate::training::train::<Autodiff<Wgpu>>(
+        artifact_dir,
+        TrainingConfig::new(ModelConfig::new(10, 512), AdamConfig::new()),
+        device,
+    );
+
+    crate::inference::infer::<Wgpu>(
+        artifact_dir,
+        device,
+        burn::data::dataset::vision::MnistDataset::test()
+            .get(42)
+            .unwrap(),
+    );
 }
