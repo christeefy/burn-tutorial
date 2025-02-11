@@ -7,5 +7,4 @@ edition = "2021"
 burn = { version = "0.15.0", features = ["train", "wgpu", "vision"] }
 
 [build-dependencies]
-
 burn-import = "0.15.0"
