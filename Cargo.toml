@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-burn = { version = "0.15.0", features = ["train", "wgpu", "vision"] }
+burn = { features = ["train", "wgpu", "vision"], git = "https://github.com/tracel-ai/burn.git", rev = "0ee5ca91b7c10a2f4dce0b2802348f13c4c41a47", version = "0.17.0" }
 
-[build-dependencies]
-burn-import = "0.15.0"
+# [build-dependencies]
+# burn-import = "0.15.0"

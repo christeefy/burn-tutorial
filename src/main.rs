@@ -1,3 +1,5 @@
+#![recursion_limit = "256"]
+
 use crate::model::ModelConfig;
 use crate::training::TrainingConfig;
 use burn::{
